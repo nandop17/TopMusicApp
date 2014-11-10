@@ -6,6 +6,7 @@ angular.module("topMusic").controller("listCtrl", function ($log, $firebase){
 
 	var vm = this;
 	$log.info(vm);
+	vm.loaded = false;
 
 
 
@@ -13,14 +14,18 @@ angular.module("topMusic").controller("listCtrl", function ($log, $firebase){
 	var sync = $firebase(ref);
 
 
-	// Get song list
-	vm.songList = sync.$asArray();
-
-
-
 	// Init the list order by default 
 	vm.predicate = "votes";
 	vm.reverse = true;
+
+
+	// Get song list
+	vm.songList = sync.$asArray();
+	vm.songList.$loaded().then(function(){
+		vm.loaded = true;
+		console.log("Loaded");
+	});
+
 
 
 	// Change order

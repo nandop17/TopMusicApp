@@ -14,7 +14,7 @@
 
 <body ng-controller="listCtrl as vm">
 
-	<div class="container">
+	<div class="container" ng-show="vm.loaded">
 		<h1>Top Music App</h1>
 		<h3>The best music</h3>
 
@@ -98,6 +98,13 @@
         </div>
 
 	</div>
+
+
+    <div class="loading" ng-hide="vm.loaded"> 
+            <h1>Top Music App</h1>
+            <h2>Loading...</h2>           
+    </div>
+
 
 </body>
 
